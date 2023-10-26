@@ -34,7 +34,7 @@ namespace Wordle
 
                 if (input == wordOfTheDay)
                 {
-                    Console.WriteLine("Success!!  Press any key to exit");
+                    Console.WriteLine("You win!!  Press any key to exit");
                     Console.Read();
                     return;
                 }
