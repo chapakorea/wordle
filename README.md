@@ -9,7 +9,8 @@ Description:
 
 Wordle is a word guessing game where you have 6 attempts to guess the word of the day, 
 it is a 5 letter word that can be a noun , adjetive or verb,
-every time you guess a correct letter it will be marked as yellow if it is in the correct place too, it will be marked as green
+every time you guess a correct letter it will be marked as yellow,
+if it is in the correct place too, it will be marked as green,
 if the letter is not in the daily word if will be marked as white.
 
 Instructions:
