@@ -31,7 +31,23 @@ namespace Wordle
             for (int i = 0; i < 6; i++)
             {
                 string input = Console.ReadLine() ?? string.Empty;
+
+                if (input == wordOfTheDay)
+                {
+                    Console.WriteLine("Success!!  Press any key to exit");
+                    Console.Read();
+                    return;
+                }
+
+                if (input.Length != 5)
+                {
+                    Console.WriteLine("Enter a 5 letter word please.");
+                    i--;
+                    continue;
+                }
+
                 int inputIndex;
+
 
                 // analyse input string
                 foreach (char c in input)
@@ -53,22 +69,6 @@ namespace Wordle
                     tracking[inputIndex] = ConsoleColor.White;
                 }
 
-
-
-                if (input == wordOfTheDay)
-                {
-                    Console.WriteLine("Success!!  Press any key to exit");
-                    Console.Read();
-                    return;
-                }
-
-                if (input.Length != 5 || input == ConsoleKey.Enter.ToString())
-                {
-                    Console.WriteLine("Enter a 5 letter word please.");
-                    i--;
-                    continue;
-                }
-
                 Console.WriteLine("-----");
 
                 inputIndex = 0;
@@ -87,7 +87,7 @@ namespace Wordle
             }
 
 
-            Console.WriteLine("Game over!!  Press any key to exit");
+            Console.WriteLine($"Game over!!  the correct word was: {wordOfTheDay}    ->>>   Press any key to exit");
             Console.Read();
         }
 
