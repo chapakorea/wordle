@@ -11,6 +11,7 @@ namespace Wordle
     {
         static void Main(string[] args)
         {
+            //get word of the day
             string wordOfTheDay = string.Empty;
             using (var reader = new StreamReader("dictionary.txt"))
             {
@@ -23,24 +24,37 @@ namespace Wordle
             Console.WriteLine("Welcome to wordle!!");
             Console.WriteLine("Enter a 5 letter word > you have 6 attempts!!");
 
-            var tracking = string.Empty;
+            var tracking = new ConsoleColor[5];
 
+
+            //check for 6 attempts
             for (int i = 0; i < 6; i++)
             {
                 string input = Console.ReadLine() ?? string.Empty;
+                int inputIndex;
 
+                // analyse input string
                 foreach (char c in input)
                 {
-                    int index;
+                    inputIndex = input.IndexOf(c);
 
                     if (wordOfTheDay.IndexOf(c) != -1)
                     {
-                        tracking =
-                        tracking = 
+                        if (inputIndex == wordOfTheDay.IndexOf(c))
+                        {
+                            tracking[inputIndex] = ConsoleColor.Green;
+                            continue;
+                        }
+
+                        tracking[inputIndex] = ConsoleColor.Yellow;
+                        continue;
                     }
+
+                    tracking[inputIndex] = ConsoleColor.White;
                 }
 
-                
+
+
                 if (input == wordOfTheDay)
                 {
                     Console.WriteLine("Success!!  Press any key to exit");
@@ -48,15 +62,28 @@ namespace Wordle
                     return;
                 }
 
-                if (input.Length != 5)
+                if (input.Length != 5 || input == ConsoleKey.Enter.ToString())
                 {
                     Console.WriteLine("Enter a 5 letter word please.");
                     i--;
                     continue;
                 }
-                    
+
+                Console.WriteLine("-----");
+
+                inputIndex = 0;
+                tracking.ToList().ForEach(x =>
+                    {
+                        Console.ForegroundColor = tracking[inputIndex];
+                        Console.Write(input[inputIndex++]);
+                    }
+                );
+
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"Incorrect!! you have {5 - i} attempts left");
-                
+
             }
 
 
