@@ -46,17 +46,13 @@ namespace Wordle
                     continue;
                 }
 
-                int inputIndex;
-
-
                 // analyse input string
-                foreach (char c in input)
+                for (int inputIndex = 0; inputIndex < input.Length; inputIndex++)
                 {
-                    inputIndex = input.IndexOf(c);
-
-                    if (wordOfTheDay.IndexOf(c) != -1)
+                    if (wordOfTheDay.IndexOf(input[inputIndex]) != -1)
                     {
-                        if (inputIndex == wordOfTheDay.IndexOf(c))
+                        
+                        if (input[inputIndex] == wordOfTheDay[inputIndex])
                         {
                             tracking[inputIndex] = ConsoleColor.Green;
                             continue;
@@ -71,11 +67,11 @@ namespace Wordle
 
                 Console.WriteLine("-----");
 
-                inputIndex = 0;
+                var tradckingIndex = 0;
                 tracking.ToList().ForEach(x =>
                     {
-                        Console.ForegroundColor = tracking[inputIndex];
-                        Console.Write(input[inputIndex++]);
+                        Console.ForegroundColor = tracking[tradckingIndex];
+                        Console.Write(input[tradckingIndex++]);
                     }
                 );
 
